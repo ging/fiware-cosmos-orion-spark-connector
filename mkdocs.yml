@@ -1,0 +1,19 @@
+site_name:  fiware-cosmos-orion-flink-connector
+repo_url: https://github.com/ging/fiware-cosmos-orion-flink-connector/
+markdown_extensions: [toc,fenced_code,admonition]
+site_description: fiware-cosmos-orion-flink-connector Documentation
+docs_dir: doc
+use_directory_urls: false
+theme: readthedocs
+extra_css: ["https://fiware.org/style/fiware_readthedocs.css", "https://fiware.org/style/fiware_readthedocs_processing.css"]
+pages:
+  - Home: index.md
+  - 'Getting started': getting_started.md
+  - 'User/Programmer Guide': usage.md
+  - 'Training courses': training.md
+  - 'Quality Assurance': qa.md
+  - 'Roadmap': roadmap.md
+  - 'Contribution guidelines': contributing.md
+  - 'Testing': testing.md
+  - 'License': license.md
+  - 'Deprecated functionalities': deprecated_functionalities.md
