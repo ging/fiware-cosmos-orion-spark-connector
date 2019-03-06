@@ -6,7 +6,7 @@
 ![License](https://img.shields.io/github/license/ging/fiware-cosmos-orion-spark-connector.svg)
 [![](https://img.shields.io/badge/tag-fiware--cosmos-orange.svg?logo=stackoverflow)](http://stackoverflow.com/questions/tagged/fiware-cosmos)
 <br/>
-[![Documentation badge](https://readthedocs.org/projects/fiware-cosmos-flink/badge/?version=latest)](http://fiware-cosmos-flink.rtfd.io)
+[![Documentation badge](https://readthedocs.org/projects/fiware-cosmos-spark/badge/?version=latest)](http://fiware-cosmos-spark.rtfd.io)
 [![Build Status](https://travis-ci.com/ging/fiware-cosmos-orion-spark-connector.svg?branch=master)](https://travis-ci.com/ging/fiware-cosmos-orion-spark-connector)
 [![Coverage Status](https://coveralls.io/repos/github/ging/fiware-cosmos-orion-spark-connector/badge.svg?branch=master)](https://coveralls.io/github/ging/fiware-cosmos-orion-spark-connector?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ff824123db8542a3ad34ee3e1be58bd4)](https://www.codacy.com/app/sonsoleslp/fiware-cosmos-orion-spark-connector?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ging/fiware-cosmos-orion-spark-connector&amp;utm_campaign=Badge_Grade)
@@ -23,7 +23,7 @@ platform components to accelerate the development of Smart Solutions.
 This project is part of [FIWARE](https://www.fiware.org/). For more information check the FIWARE Catalogue entry for
 [Context Processing, Analysis and Visualization](https://github.com/Fiware/catalogue/tree/master/processing).
 
-| :books: [Documentation](https://fiware-cosmos-flink.readthedocs.io) | :mortar_board: [Academy](https://fiware-academy.readthedocs.io/en/latest/processing/cosmos) | :dart: [Roadmap](https://github.com/ging/fiware-cosmos-orion-spark-connector/blob/master/ROADMAP.md) |
+| :books: [Documentation](https://fiware-cosmos-spark.readthedocs.io) | :mortar_board: [Academy](https://fiware-academy.readthedocs.io/en/latest/processing/cosmos) | :dart: [Roadmap](https://github.com/ging/fiware-cosmos-orion-spark-connector/blob/master/ROADMAP.md) |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 
 
