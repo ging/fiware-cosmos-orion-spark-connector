@@ -138,8 +138,8 @@ Add it to your `pom.xml` file inside the dependencies section.
 
 ```
 
-    The sink accepts a `DataStream` of objects of the class
-    **`OrionSinkObject`**. This class has 4 attributes:
+The sink accepts a `DataStream` of objects of the class
+**`OrionSinkObject`**. This class has 4 attributes:
 
 -   **`content`**: Message content in String format. If it is a JSON, you need to make sure to stringify it before
     sending it.
