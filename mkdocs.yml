@@ -1,7 +1,7 @@
-site_name:  fiware-cosmos-orion-flink-connector
-repo_url: https://github.com/ging/fiware-cosmos-orion-flink-connector/
+site_name:  fiware-cosmos-orion-spark-connector
+repo_url: https://github.com/ging/fiware-cosmos-orion-spark-connector/
 markdown_extensions: [toc,fenced_code,admonition]
-site_description: fiware-cosmos-orion-flink-connector Documentation
+site_description: fiware-cosmos-orion-spark-connector Documentation
 docs_dir: doc
 use_directory_urls: false
 theme: readthedocs
