@@ -1,14 +1,16 @@
-# FIWARE Cosmos Orion-Flink Connector
+:construction: WORK IN PROGRESS
+
+# FIWARE Cosmos Orion-Spark Connector
 
 [![](https://nexus.lab.fiware.org/static/badges/chapters/processing.svg)](https://www.fiware.org/developers/catalogue/)
-![License](https://img.shields.io/github/license/ging/fiware-cosmos-orion-flink-connector.svg)
+![License](https://img.shields.io/github/license/ging/fiware-cosmos-orion-spark-connector.svg)
 [![](https://img.shields.io/badge/tag-fiware--cosmos-orange.svg?logo=stackoverflow)](http://stackoverflow.com/questions/tagged/fiware-cosmos)
 <br/>
 [![Documentation badge](https://readthedocs.org/projects/fiware-cosmos-flink/badge/?version=latest)](http://fiware-cosmos-flink.rtfd.io)
-[![Build Status](https://travis-ci.com/ging/fiware-cosmos-orion-flink-connector.svg?branch=master)](https://travis-ci.com/ging/fiware-cosmos-orion-flink-connector)
-[![Coverage Status](https://coveralls.io/repos/github/ging/fiware-cosmos-orion-flink-connector/badge.svg?branch=master)](https://coveralls.io/github/ging/fiware-cosmos-orion-flink-connector?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ff824123db8542a3ad34ee3e1be58bd4)](https://www.codacy.com/app/sonsoleslp/fiware-cosmos-orion-flink-connector?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ging/fiware-cosmos-orion-flink-connector&amp;utm_campaign=Badge_Grade)
-[![Known Vulnerabilities](https://snyk.io/test/github/ging/fiware-cosmos-orion-flink-connector/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/ging/fiware-cosmos-orion-flink-connector?targetFile=pom.xml)
+[![Build Status](https://travis-ci.com/ging/fiware-cosmos-orion-spark-connector.svg?branch=master)](https://travis-ci.com/ging/fiware-cosmos-orion-spark-connector)
+[![Coverage Status](https://coveralls.io/repos/github/ging/fiware-cosmos-orion-spark-connector/badge.svg?branch=master)](https://coveralls.io/github/ging/fiware-cosmos-orion-spark-connector?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ff824123db8542a3ad34ee3e1be58bd4)](https://www.codacy.com/app/sonsoleslp/fiware-cosmos-orion-spark-connector?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ging/fiware-cosmos-orion-spark-connector&amp;utm_campaign=Badge_Grade)
+[![Known Vulnerabilities](https://snyk.io/test/github/ging/fiware-cosmos-orion-spark-connector/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/ging/fiware-cosmos-orion-spark-connector?targetFile=pom.xml)
 ![Status](https://nexus.lab.fiware.org/static/badges/statuses/cosmos.svg)
 
 The Cosmos Generic Enabler simplifies Big Data analysis of context data and integrates with some of the many popular Big
@@ -21,7 +23,7 @@ platform components to accelerate the development of Smart Solutions.
 This project is part of [FIWARE](https://www.fiware.org/). For more information check the FIWARE Catalogue entry for
 [Context Processing, Analysis and Visualization](https://github.com/Fiware/catalogue/tree/master/processing).
 
-| :books: [Documentation](https://fiware-cosmos-flink.readthedocs.io) | :mortar_board: [Academy](https://fiware-academy.readthedocs.io/en/latest/processing/cosmos) | :dart: [Roadmap](https://github.com/ging/fiware-cosmos-orion-flink-connector/blob/master/ROADMAP.md) |
+| :books: [Documentation](https://fiware-cosmos-flink.readthedocs.io) | :mortar_board: [Academy](https://fiware-academy.readthedocs.io/en/latest/processing/cosmos) | :dart: [Roadmap](https://github.com/ging/fiware-cosmos-orion-spark-connector/blob/master/ROADMAP.md) |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 
 
@@ -29,7 +31,7 @@ This project is part of [FIWARE](https://www.fiware.org/). For more information 
 
 -   [What is Cosmos?](#what-is-cosmos)
 -   [Why use Cosmos?](#why-use-cosmos)
--   [Orion Flink Connector](#orion-flink-connector)
+-   [Orion Spark Connector](#orion-spark-connector)
 -   [Installation](#installation)
 -   [Usage: API Overview](#usage-api-overview)
 -   [Training Courses](#training-courses)
@@ -59,11 +61,11 @@ analysis allows for the study of datasets coming from your context data which ar
 data-processing software. You can apply predictive analysis or user behaviour analytics to extract meaningful
 conclusions as to the state of your smart solution and bring value to your solution.
 
-## Orion Flink Connector
+## Orion Spark Connector
 
-This is a Flink connector for the FIWARE Orion Context Broker. It has two parts:
+This is a Spark connector for the FIWARE Orion Context Broker. It has two parts:
 
--   **`OrionSource`**: Source for receiving NGSI v2 events in the shape of HTTP messages from subscriptions.
+-   **`OrionSink`**: Source for receiving NGSI v2 events in the shape of HTTP messages from subscriptions.
 -   **`OrionSink`**: Sink for writing back to the Context Broker.
 
 ### Installation
@@ -71,7 +73,7 @@ This is a Flink connector for the FIWARE Orion Context Broker. It has two parts:
 Download the JAR from the latest release. In your project directory run:
 
 ```console
-mvn install:install-file -Dfile=$(PATH_DOWNLOAD)/orion.flink.connector-1.0.jar -DgroupId=org.fiware.cosmos -DartifactId=orion.flink.connector -Dversion=1.0 -Dpackaging=jar
+mvn install:install-file -Dfile=$(PATH_DOWNLOAD)/orion.spark.connector-1.0.jar -DgroupId=org.fiware.cosmos -DartifactId=orion.spark.connector -Dversion=1.0 -Dpackaging=jar
 ```
 
 Add it to your `pom.xml` file inside the dependencies section.
@@ -79,7 +81,7 @@ Add it to your `pom.xml` file inside the dependencies section.
 ```xml
 <dependency>
     <groupId>org.fiware.cosmos</groupId>
-    <artifactId>orion.flink.connector</artifactId>
+    <artifactId>orion.spark.connector</artifactId>
     <version>1.0</version>
 </dependency>
 ```
@@ -91,22 +93,19 @@ Add it to your `pom.xml` file inside the dependencies section.
 -   Import dependency.
 
 ```scala
-    import org.fiware.cosmos.orion.flink.connector.{OrionSource}
+    import org.fiware.cosmos.orion.spark.connector.{OrionSource}
 ```
 
 -   Add source to Flink Environment. Indicate what port you want to listen to (e.g. 9001).
 
 ```scala
-    val env = StreamExecutionEnvironment.getExecutionEnvironment
-    val eventStream = env.addSource(new OrionSource(9001))
+    // TODO
 ```
 
 -   Parse the received data.
 
 ```scala
-    val processedDataStream = eventStream.
-        .flatMap(event => event.entities)
-        // ...processing
+    // TODO
 ```
 
     The received data is a DataStream of objects of the class **`NgsiEvent`**.
@@ -129,19 +128,14 @@ Add it to your `pom.xml` file inside the dependencies section.
 -   Import dependency.
 
 ```scala
-    import org.fiware.cosmos.orion.flink.connector.{OrionSink,OrionSinkObject,ContentType,HTTPMethod}
+    import org.fiware.cosmos.orion.spark.connector.{OrionSink,OrionSinkObject,ContentType,HTTPMethod}
 ```
 
 -   Add sink to source.
 
 ```scala
-val processedDataStream = eventStream. // ...
-    processing .map(obj => new OrionSinkObject( "{\"temperature_avg\": {
-    \"value\":"+obj.temperature+", \"type\": \"Float\"}}", // Stringified JSON
-    message "http://context-broker-url:8080/v2/entities/Room1", // URL
-    ContentType.JSON, // Content type HTTPMethod.POST) // HTTP method )
+    // TODO
 
-        OrionSink.addSink( processedDataStream )
 ```
 
     The sink accepts a `DataStream` of objects of the class
@@ -157,9 +151,9 @@ val processedDataStream = eventStream. // ...
 
 > **Warning** :warning:
 >
-> When packaging your code in a JAR, it is common to exclude dependencies like Flink and Scala since they are typically
+> When packaging your code in a JAR, it is common to exclude dependencies like Spark and Scala since they are typically
 > provided by the execution environment. Nevertheless, it is necessary to include this connector in your packaged code,
-> since it is not part of the Flink distribution.
+> since it is not part of the Spark distribution.
 
 ## Training courses
 
@@ -172,12 +166,7 @@ Some lessons on Big Data Fundamentals are offered in the
 
 Several examples are provided to facilitate getting started with the connector. They are hosted in a separate
 repository:
-[fiware-cosmos-orion-flink-connector-examples](https://github.com/ging/fiware-cosmos-orion-flink-connector-examples).
-
-### Other Presentations
-
--   [FIWARE Real-time Processing of Historic Context Information using Apache Flink](https://www.slideshare.net/mobile/FI-WARE/fiware-global-summit-fiware-orion-flink-connector)
-    (Málaga 2018)
+[fiware-cosmos-orion-spark-connector-examples](https://github.com/ging/fiware-cosmos-orion-spark-connector-examples).
 
 ## Quality Assurance
 
@@ -206,12 +195,12 @@ This project is part of [FIWARE](https://fiware.org/) and has been rated as foll
 ## Roadmap
 
 The list of features that are planned for the subsequent release are available in the
-[ROADMAP](https://github.com/ging/fiware-cosmos-orion-flink-connector/blob/master/ROADMAP.md) file.
+[ROADMAP](https://github.com/ging/fiware-cosmos-orion-spark-connector/blob/master/ROADMAP.md) file.
 
 ## Contributing
 
 Contribution guidelines are detailed in the
-[CONTRIBUTIONS](https://github.com/ging/fiware-cosmos-orion-flink-connector/blob/master/CONTRIBUTIONS.md) file.
+[CONTRIBUTIONS](https://github.com/ging/fiware-cosmos-orion-spark-connector/blob/master/CONTRIBUTIONS.md) file.
 
 ## Testing
 
