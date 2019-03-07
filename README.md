@@ -65,7 +65,7 @@ conclusions as to the state of your smart solution and bring value to your solut
 
 This is a Spark connector for the FIWARE Orion Context Broker. It has two parts:
 
--   **`OrionSink`**: Source for receiving NGSI v2 events in the shape of HTTP messages from subscriptions.
+-   **`OrionReceiver`**: Source for receiving NGSI v2 events in the shape of HTTP messages from subscriptions.
 -   **`OrionSink`**: Sink for writing back to the Context Broker.
 
 ### Installation
