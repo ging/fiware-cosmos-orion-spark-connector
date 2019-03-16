@@ -4,27 +4,30 @@ import java.io.{BufferedReader, InputStreamReader}
 import java.net.Socket
 import java.nio.charset.StandardCharsets
 
+import org.apache.spark.SparkConf
 import org.apache.spark.internal.Logging
 import org.apache.spark.storage.StorageLevel
+import org.apache.spark.streaming.{Seconds, StreamingContext}
 import org.apache.spark.streaming.receiver.Receiver
+
+
 
 class OrionReceiver(host: String, port: Int)
   extends Receiver[String](StorageLevel.MEMORY_AND_DISK_2) with Logging {
 
-  def onStart() {
-    // Start the thread that receives data over a connection
-    new Thread("Socket Receiver") {
-      override def run() { receive() }
-    }.start()
+  def onStart(ctx: SourceContext[NgsiEvent]): Unit = {
+    server = new OrionHttpServer(ctx)
+    server.start(tryPort, None)
   }
 
   def onStop() {
     // There is nothing much to do as the thread calling receive()
     // is designed to stop by itself if isStopped() returns false
+    Unit = server.close()
   }
 
   /** Create a socket connection and receive data until receiver is stopped */
-  private def receive() {
+  /*private def receive() {
     var socket: Socket = null
     var userInput: String = null
     try {
@@ -53,4 +56,5 @@ class OrionReceiver(host: String, port: Int)
         restart("Error receiving data", t)
     }
   }
+*/
 }
