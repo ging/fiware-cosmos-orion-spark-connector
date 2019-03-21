@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory
  * @param threadNum cpu number used by netty epoll
  * @param logLevel  netty log level
  */
-class OrionHttpServer(callback: String => Unit,
+class OrionHttpServer(callback: NgsiEvent => Unit,
   threadNum: Int = Runtime.getRuntime.availableProcessors(),
   logLevel: LogLevel = LogLevel.INFO
 ) extends ServerTrait {

@@ -20,12 +20,14 @@ object Test {
 
   def main(args: Array[String]): Unit = {
     print("yes")
-    val sparkConf = new SparkConf().setAppName("CustomReceiver").setMaster("local")
+    val sparkConf = new SparkConf().setAppName("CustomReceiver").setMaster("local[2]")
     val ssc = new StreamingContext(sparkConf, Seconds(1))
     val customReceiverStream = ssc.receiverStream(new OrionReceiver("localhost", 9001))//host ="138.4.7.110"
+    customReceiverStream
+        .print()
 
-    customReceiverStream.print()
     ssc.start()
+
     ssc.awaitTermination()
   }
 }
