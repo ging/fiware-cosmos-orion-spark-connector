@@ -31,9 +31,9 @@ import org.slf4j.LoggerFactory
 /**
  * HTTP server handler, HTTP http request
  *
- * @param sc       Flink source context for collect received message
+ * @param callback      Function for writing on Spark
  */
-class OrionHttpHandler(callback: String => Unit) extends ChannelInboundHandlerAdapter {
+class OrionHttpHandler(callback: NgsiEvent => Unit) extends ChannelInboundHandlerAdapter {
 
   private lazy val logger = LoggerFactory.getLogger(getClass)
   private lazy val CONTENT_TYPE = new AsciiString("Content-Type")
@@ -55,7 +55,7 @@ class OrionHttpHandler(callback: String => Unit) extends ChannelInboundHandlerAd
         }
         val ngsiEvent = parseMessage(req)
        // if (sc != null) {
-          callback(ngsiEvent.toString)
+          callback(ngsiEvent)
         //}
 
         if (HttpUtil.is100ContinueExpected(req)) {

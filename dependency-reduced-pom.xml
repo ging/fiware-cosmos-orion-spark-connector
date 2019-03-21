@@ -181,12 +181,6 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <version>19.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
       <version>1.2.31</version>
@@ -294,7 +288,6 @@
   <properties>
     <scala.version>2.11.12</scala.version>
     <scala.binary.version>2.11</scala.binary.version>
-    <play2.version>2.4.6</play2.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spark.version>2.4.0</spark.version>
   </properties>

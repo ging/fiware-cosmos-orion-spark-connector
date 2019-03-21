@@ -14,62 +14,23 @@ import org.apache.spark.streaming.receiver.Receiver
 
 
 class OrionReceiver(host: String, port: Int)
-  extends Receiver[String](StorageLevel.MEMORY_AND_DISK_2) with Logging {
+  extends Receiver[NgsiEvent](StorageLevel.MEMORY_AND_DISK_2) with Logging {
 
 private var server: OrionHttpServer =_
 
-def store1(x: String): Unit ={
-  store(x)
-}
+  def receive(x: NgsiEvent): Unit ={
+    store(x)
+  }
 
   def onStart() = {
-    // Start the thread that receives data over a connection
-    new Thread("Socket Receiver") {
-      override def run() { receive() }
-    }.start()
+    server = new OrionHttpServer(receive)
+    server.start(port, None)
   }
 
   // There is nothing much to do as the thread calling receive()
   // is designed to stop by itself if isStopped() returns false
   def onStop(): Unit = {
     server.close()
-  }
-
-
-
-  /** Create a socket connection and receive data until receiver is stopped */
-private def receive(): Unit = {
-
-  server = new OrionHttpServer(store1)
-  server.start(port, None)
-
-   /*   var socket: Socket = null
-    var userInput: String = null
-    try {
-      // Connect to host:port
-      socket = new Socket(host, port)
-
-      // Until stopped or connection broken continue reading
-      val reader = new BufferedReader(
-        new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8))
-      userInput = reader.readLine()
-      while(!isStopped && userInput != null) {
-        store(userInput)
-        userInput = reader.readLine()
-      }
-      reader.close()
-      socket.close()
-
-      // Restart in an attempt to connect again when server is active again
-      restart("Trying to connect again")
-    } catch {
-      case e: java.net.ConnectException =>
-        // restart if could not connect to server
-        restart("Error connecting to " + host + ":" + port, e)
-      case t: Throwable =>
-        // restart if there is any other error
-        restart("Error receiving data", t)
-    }*/
   }
 
 }
