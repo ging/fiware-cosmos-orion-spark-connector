@@ -87,7 +87,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>19.0</version>
+            <version>14.0.1-rc1</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
