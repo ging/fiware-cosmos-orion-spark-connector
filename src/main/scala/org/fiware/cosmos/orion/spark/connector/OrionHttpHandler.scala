@@ -28,15 +28,12 @@ import org.json4s.DefaultFormats
 import org.json4s.jackson.JsonMethods.parse
 import org.slf4j.LoggerFactory
 
-import org.apache.flink.streaming.api.functions.source.SourceFunction.SourceContext
 /**
  * HTTP server handler, HTTP http request
  *
  * @param sc       Flink source context for collect received message
  */
-class OrionHttpHandler(
-  sc: SourceContext[NgsiEvent]
-) extends ChannelInboundHandlerAdapter {
+class OrionHttpHandler(callback: String => Unit) extends ChannelInboundHandlerAdapter {
 
   private lazy val logger = LoggerFactory.getLogger(getClass)
   private lazy val CONTENT_TYPE = new AsciiString("Content-Type")
@@ -57,9 +54,9 @@ class OrionHttpHandler(
           throw new Exception("Only POST requests are allowed")
         }
         val ngsiEvent = parseMessage(req)
-        if (sc != null) {
-          sc.collect(ngsiEvent)
-        }
+       // if (sc != null) {
+          callback(ngsiEvent.toString)
+        //}
 
         if (HttpUtil.is100ContinueExpected(req)) {
           ctx.write(new DefaultFullHttpResponse(HTTP_1_1, CONTINUE))

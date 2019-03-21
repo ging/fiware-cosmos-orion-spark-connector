@@ -35,8 +35,7 @@ import org.slf4j.LoggerFactory
  * @param threadNum cpu number used by netty epoll
  * @param logLevel  netty log level
  */
-class OrionHttpServer(
-  ctx: SourceContext[NgsiEvent],
+class OrionHttpServer(callback: String => Unit,
   threadNum: Int = Runtime.getRuntime.availableProcessors(),
   logLevel: LogLevel = LogLevel.INFO
 ) extends ServerTrait {
@@ -71,7 +70,7 @@ class OrionHttpServer(
             val p = ch.pipeline()
             p.addLast(new HttpServerCodec)
             p.addLast(new HttpObjectAggregator(HOA))
-            p.addLast(new OrionHttpHandler(ctx))
+            p.addLast(new OrionHttpHandler(callback))
           }
         })
       val f = b.bind(portNotInUse)

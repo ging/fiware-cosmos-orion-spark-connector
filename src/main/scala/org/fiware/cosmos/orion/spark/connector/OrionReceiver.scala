@@ -2,6 +2,7 @@ package org.fiware.cosmos.orion.spark.connector
 
 import java.io.{BufferedReader, InputStreamReader}
 import java.net.Socket
+import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 
 import org.apache.spark.SparkConf
@@ -15,20 +16,34 @@ import org.apache.spark.streaming.receiver.Receiver
 class OrionReceiver(host: String, port: Int)
   extends Receiver[String](StorageLevel.MEMORY_AND_DISK_2) with Logging {
 
-  def onStart(ctx: SourceContext[NgsiEvent]): Unit = {
-    server = new OrionHttpServer(ctx)
-    server.start(tryPort, None)
+private var server: OrionHttpServer =_
+
+def store1(x: String): Unit ={
+  store(x)
+}
+
+  def onStart() = {
+    // Start the thread that receives data over a connection
+    new Thread("Socket Receiver") {
+      override def run() { receive() }
+    }.start()
   }
 
-  def onStop() {
-    // There is nothing much to do as the thread calling receive()
-    // is designed to stop by itself if isStopped() returns false
-    Unit = server.close()
+  // There is nothing much to do as the thread calling receive()
+  // is designed to stop by itself if isStopped() returns false
+  def onStop(): Unit = {
+    server.close()
   }
+
+
 
   /** Create a socket connection and receive data until receiver is stopped */
-  /*private def receive() {
-    var socket: Socket = null
+private def receive(): Unit = {
+
+  server = new OrionHttpServer(store1)
+  server.start(port, None)
+
+   /*   var socket: Socket = null
     var userInput: String = null
     try {
       // Connect to host:port
@@ -54,7 +69,7 @@ class OrionReceiver(host: String, port: Int)
       case t: Throwable =>
         // restart if there is any other error
         restart("Error receiving data", t)
-    }
+    }*/
   }
-*/
+
 }
