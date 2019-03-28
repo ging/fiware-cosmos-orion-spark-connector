@@ -37,14 +37,6 @@
             <version>${spark.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-sql -->
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_${scala.binary.version}</artifactId>
-            <version>${spark.version}</version>
-        </dependency>
-
-
         <!-- Scala Library, provided by Spark as well. -->
         <dependency>
             <groupId>org.scala-lang</groupId>
