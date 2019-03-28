@@ -20,11 +20,16 @@ object Test {
 
   def main(args: Array[String]): Unit = {
     print("yes")
-    val sparkConf = new SparkConf().setAppName("CustomReceiver").setMaster("local[2]")
+    val sparkConf = new SparkConf().setAppName("CustomReceiver").setMaster("local[5]")
     val ssc = new StreamingContext(sparkConf, Seconds(1))
     val customReceiverStream = ssc.receiverStream(new OrionReceiver("localhost", 9001))//host ="138.4.7.110"
-    customReceiverStream
-        .print()
+    print("---------------------------------------------------")
+    customReceiverStream.print
+
+
+//    customReceiverStream.foreachRDD(a=>a.foreach(b=>OrionSender.process( OrionSenderObject("", "",ContentType.Plain, HTTPMethod.PATCH)))
+   // )
+
 
     ssc.start()
 
