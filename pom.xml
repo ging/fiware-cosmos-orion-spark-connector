@@ -6,7 +6,7 @@
 
     <groupId>org.fiware.cosmos</groupId>
     <artifactId>orion.spark.connector</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <name>Fiware Orion Spark Connector</name>
     <url>https://www.fiware.org/</url>

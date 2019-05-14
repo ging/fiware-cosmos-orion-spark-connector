@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory
 /**
  * Netty HTTP server
  *
- * @param ctx       Flink source context for collect received message
+ * @param callback
  * @param threadNum cpu number used by netty epoll
  * @param logLevel  netty log level
  */
