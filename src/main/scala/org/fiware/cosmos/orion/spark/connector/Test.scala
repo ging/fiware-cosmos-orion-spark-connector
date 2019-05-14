@@ -11,7 +11,7 @@ object Test {
     val sparkConf = new SparkConf().setAppName("CustomReceiver").setMaster("local[3]")
     val ssc = new StreamingContext(sparkConf, Seconds(1))
     val customReceiverStream : DStream[NgsiEvent] = ssc.receiverStream(new OrionReceiver("localhost", 9001))//host ="138.4.7.110"
-    print("---------------------------------------------------")
+    print("--------------------------¿¿???-------------------------")
     customReceiverStream.print
 
     val res : DStream[OrionSinkObject] = customReceiverStream

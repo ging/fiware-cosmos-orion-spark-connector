@@ -3,7 +3,6 @@ package org.fiware.cosmos.orion.spark.connector
 import org.apache.http.client.methods.{HttpEntityEnclosingRequestBase, HttpPatch, HttpPost, HttpPut}
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.HttpClientBuilder
-import org.apache.spark.rdd.RDD
 import org.apache.spark.streaming.dstream.DStream
 import org.slf4j.LoggerFactory
 
@@ -56,7 +55,7 @@ object OrionSink {
     * @param url Destination URL
     * @return HTTP object
     */
-  def getMethod(method: HTTPMethod.Value, url: String): HttpEntityEnclosingRequestBase = {
+ def getMethod(method: HTTPMethod.Value, url: String): HttpEntityEnclosingRequestBase = {
     method match {
       case HTTPMethod.POST => new HttpPost(url)
       case HTTPMethod.PUT => new HttpPut(url)
@@ -64,7 +63,7 @@ object OrionSink {
     }
   }
 
-  def createHttpMsg(msg: OrionSinkObject) : HttpEntityEnclosingRequestBase= {
+ def createHttpMsg(msg: OrionSinkObject) : HttpEntityEnclosingRequestBase= {
     val httpEntity = getMethod(msg.method, msg.url)
     httpEntity.setHeader("Content-type", msg.contentType.toString)
     httpEntity.setEntity(new StringEntity(msg.content))
