@@ -17,6 +17,7 @@ object Test {
     val res : DStream[OrionSinkObject] = customReceiverStream
       .flatMap(event => event.entities)
       .map(s =>{
+<<<<<<< HEAD
        OrionSinkObject("{'msg': 'hola'}","http://localhost:5000/fiware",ContentType.JSON, HTTPMethod.POST)
       })
     OrionSink.addSink(res)
@@ -24,5 +25,14 @@ object Test {
       ssc.start()
 
       ssc.awaitTermination()
+=======
+        OrionSinkObject("{'msg': 'hola'}","http://localhost:5000/fiware",ContentType.JSON, HTTPMethod.POST)
+      })
+    OrionSink.addSink(res)
+
+    ssc.start()
+
+    ssc.awaitTermination()
+>>>>>>> 2c83eb01cbe94483f6227bfb77c64b387f9ca06d
   }
 }

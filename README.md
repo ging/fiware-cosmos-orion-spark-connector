@@ -7,7 +7,11 @@
 [![](https://img.shields.io/badge/tag-fiware--cosmos-orange.svg?logo=stackoverflow)](http://stackoverflow.com/questions/tagged/fiware-cosmos)
 <br/>
 [![Documentation badge](https://readthedocs.org/projects/fiware-cosmos-spark/badge/?version=latest)](http://fiware-cosmos-spark.rtfd.io)
+<<<<<<< HEAD
 [![Build Status](https://travis-ci.com/ging/fiware-cosmos-orion-spark-connector.svg?branch=master)](https://travis-ci.com/ging/fiware-cosmos-orion-spark-connector)
+=======
+[![Build Status](https://travis-ci.org/ging/fiware-cosmos-orion-spark-connector.svg?branch=master)](https://travis-ci.com/ging/fiware-cosmos-orion-spark-connector)
+>>>>>>> 2c83eb01cbe94483f6227bfb77c64b387f9ca06d
 [![Coverage Status](https://coveralls.io/repos/github/ging/fiware-cosmos-orion-spark-connector/badge.svg?branch=master)](https://coveralls.io/github/ging/fiware-cosmos-orion-spark-connector?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ff824123db8542a3ad34ee3e1be58bd4)](https://www.codacy.com/app/sonsoleslp/fiware-cosmos-orion-spark-connector?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ging/fiware-cosmos-orion-spark-connector&amp;utm_campaign=Badge_Grade)
 [![Known Vulnerabilities](https://snyk.io/test/github/ging/fiware-cosmos-orion-spark-connector/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/ging/fiware-cosmos-orion-spark-connector?targetFile=pom.xml)
@@ -99,18 +103,26 @@ Add it to your `pom.xml` file inside the dependencies section.
 -   Add source to Spark Environment. Indicate what port you want to listen to (e.g. 9001).
 
 ```scala
+<<<<<<< HEAD
  val sparkConf = new SparkConf().setAppName("CustomReceiver").setMaster("local[3]")
  val ssc = new StreamingContext(sparkConf, Seconds(10))
   
  val eventStream = ssc.receiverStream(new OrionReceiver(9001))
+=======
+    // TODO
+>>>>>>> 2c83eb01cbe94483f6227bfb77c64b387f9ca06d
 ```
 
 -   Parse the received data.
 
 ```scala
+<<<<<<< HEAD
  val processedDataStream = eventStream.
         .flatMap(event => event.entities)
         // ...processing
+=======
+    // TODO
+>>>>>>> 2c83eb01cbe94483f6227bfb77c64b387f9ca06d
 ```
 
 The received data is a DataStream of objects of the class **`NgsiEvent`**. This class has the following attributes: -
@@ -132,6 +144,7 @@ following properties: - **`type`**: Type of value (Float, Int,...). - **`value`*
 -   Add sink to source.
 
 ```scala
+<<<<<<< HEAD
 val processedDataStream = eventStream.
  // ... processing
  .map(obj =>
@@ -143,6 +156,9 @@ val processedDataStream = eventStream.
  )
 
 OrionSink.addSink( processedDataStream )
+=======
+    // TODO
+>>>>>>> 2c83eb01cbe94483f6227bfb77c64b387f9ca06d
 
 ```
 

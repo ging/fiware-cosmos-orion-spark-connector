@@ -87,7 +87,11 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
+<<<<<<< HEAD
             <version>14.0.1</version>
+=======
+            <version>24.1.1-jre</version>
+>>>>>>> 2c83eb01cbe94483f6227bfb77c64b387f9ca06d
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
