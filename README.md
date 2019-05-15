@@ -7,13 +7,9 @@
 [![](https://img.shields.io/badge/tag-fiware--cosmos-orange.svg?logo=stackoverflow)](http://stackoverflow.com/questions/tagged/fiware-cosmos)
 <br/>
 [![Documentation badge](https://readthedocs.org/projects/fiware-cosmos-spark/badge/?version=latest)](http://fiware-cosmos-spark.rtfd.io)
-<<<<<<< HEAD
-[![Build Status](https://travis-ci.com/ging/fiware-cosmos-orion-spark-connector.svg?branch=master)](https://travis-ci.com/ging/fiware-cosmos-orion-spark-connector)
-=======
-[![Build Status](https://travis-ci.org/ging/fiware-cosmos-orion-spark-connector.svg?branch=master)](https://travis-ci.com/ging/fiware-cosmos-orion-spark-connector)
->>>>>>> 2c83eb01cbe94483f6227bfb77c64b387f9ca06d
+[![Build Status](https://travis-ci.org/ging/fiware-cosmos-orion-spark-connector.svg?branch=master)](https://travis-ci.org/ging/fiware-cosmos-orion-spark-connector)
 [![Coverage Status](https://coveralls.io/repos/github/ging/fiware-cosmos-orion-spark-connector/badge.svg?branch=master)](https://coveralls.io/github/ging/fiware-cosmos-orion-spark-connector?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ff824123db8542a3ad34ee3e1be58bd4)](https://www.codacy.com/app/sonsoleslp/fiware-cosmos-orion-spark-connector?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ging/fiware-cosmos-orion-spark-connector&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ff824123db8542a3ad34ee3e1be58bd4)](https://www.codacy.com/app/sonsoleslp/fiware-cosmos-orion-spark-connector?utm_source=github.com&utm_medium=referral&utm_content=ging/fiware-cosmos-orion-spark-connector&utm_campaign=Badge_Grade)
 [![Known Vulnerabilities](https://snyk.io/test/github/ging/fiware-cosmos-orion-spark-connector/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/ging/fiware-cosmos-orion-spark-connector?targetFile=pom.xml)
 ![Status](https://nexus.lab.fiware.org/static/badges/statuses/cosmos.svg)
 
@@ -106,10 +102,8 @@ Add it to your `pom.xml` file inside the dependencies section.
 
  val sparkConf = new SparkConf().setAppName("CustomReceiver").setMaster("local[3]")
  val ssc = new StreamingContext(sparkConf, Seconds(10))
-  
- val eventStream = ssc.receiverStream(new OrionReceiver(9001))
 
-    // TODO
+ val eventStream = ssc.receiverStream(new OrionReceiver(9001))
 
 ```
 
@@ -120,47 +114,48 @@ Add it to your `pom.xml` file inside the dependencies section.
  val processedDataStream = eventStream.
         .flatMap(event => event.entities)
         // ...processing
-
-    // TODO
-
 ```
 
-The received data is a DataStream of objects of the class **`NgsiEvent`**. This class has the following attributes: -
-**`creationTime`**: Timestamp of arrival. - **`service`**: FIWARE service extracted from the HTTP headers. -
-**`servicePath`**: FIWARE service path extracted from the HTTP headers. - **`entities`**: Sequence of entites included
-in the message. Each entity has the following attributes: - **`id`**: Identifier of the entity. - **`type`**: Node
-type. - **`attrs`**: Map of attributes in which the key is the attribute name and the value is an object with the
-following properties: - **`type`**: Type of value (Float, Int,...). - **`value`**: Value of the attribute. -
-**`metadata`**: Additional metadata.
+The received data is a DataStream of objects of the class **`NgsiEvent`**. This class has the following attributes:
+
+-   **`creationTime`**: Timestamp of arrival.
+-   **`service`**: FIWARE service extracted from the HTTP headers.
+-   **`servicePath`**: FIWARE service path extracted from the HTTP headers.
+-   **`entities`**: Sequence of entites included in the message. Each entity has the following attributes:
+    -   **`id`**: Identifier of the entity.
+    -   **`type`**: Node type.
+    -   **`attrs`**: Map of attributes in which the key is the attribute name and the value is an object with the
+        following properties:
+        -   **`type`**: Type of value (Float, Int,...).
+        -   **`value`**: Value of the attribute.
+        -   **`metadata`**: Additional metadata.
 
 #### OrionSink
 
 -   Import dependency.
 
 ```scala
-    import org.fiware.cosmos.orion.spark.connector.{OrionSink,OrionSinkObject,ContentType,HTTPMethod}
+    import org.fiware.cosmos.orion.spark.connector.{OrionSink, OrionSinkObject, ContentType, HTTPMethod}
 ```
 
 -   Add sink to source.
 
 ```scala
-   
-   val processedDataStream = eventStream.
-    // ... processing
-    .map(obj =>
-       new OrionSinkObject(
-           "{\"temperature_avg\": { \"value\":"+obj.temperature+", \"type\": \"Float\"}}", // Stringified JSON message
-           "http://context-broker-url:8080/v2/entities/Room1", // URL
-           ContentType.JSON, // Content type
-           HTTPMethod.POST) // HTTP method
-    )
-   
-   OrionSink.addSink( processedDataStream )
-   
-   ```
 
-The sink accepts a `DataStream` of objects of the class
-**`OrionSinkObject`**. This class has 4 attributes:
+val processedDataStream = eventStream.
+ // ... processing
+ .map(obj =>
+    new OrionSinkObject(
+        "{\"temperature_avg\": { \"value\":"+obj.temperature+", \"type\": \"Float\"}}", // Stringified JSON message
+        "http://context-broker-url:8080/v2/entities/Room1", // URL
+        ContentType.JSON, // Content type
+        HTTPMethod.POST) // HTTP method
+ )
+
+OrionSink.addSink( processedDataStream )
+```
+
+The sink accepts a `DataStream` of objects of the class **`OrionSinkObject`**. This class has 4 attributes:
 
 -   **`content`**: Message content in String format. If it is a JSON, you need to make sure to stringify it before
     sending it.

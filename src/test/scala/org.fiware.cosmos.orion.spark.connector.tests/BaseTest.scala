@@ -37,7 +37,7 @@ class BaseTest {
   private lazy val pool = Executors.newCachedThreadPool()
 
 
-  def schedule(period: Int, f: () => Unit): Unit = {
+  def schedule(period: Int, f: () => Unit):  Unit = {
     schedule.scheduleAtFixedRate(new Runnable {
       override def run(): Unit = {
         f.apply()
@@ -46,11 +46,13 @@ class BaseTest {
   }
 
   def run(f: () => Unit): Unit = {
-    pool.submit(new Runnable {
+    val runnable = new Runnable {
       override def run(): Unit = {
         f.apply()
       }
-    })
+    }
+    pool.submit(runnable)
+
   }
 
   def sendGetRequest(url: String): String = {
