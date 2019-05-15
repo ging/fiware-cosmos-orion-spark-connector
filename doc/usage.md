@@ -9,14 +9,22 @@ import org.fiware.cosmos.orion.spark.connector.{OrionSource}
 -   Add source to Spark Environment. Indicate what port you want to listen to (e.g. 9001).
 
 ```scala
-//TODO
+
+ val sparkConf = new SparkConf().setAppName("CustomReceiver").setMaster("local[3]")
+ val ssc = new StreamingContext(sparkConf, Seconds(10))
+  
+ val eventStream = ssc.receiverStream(new OrionReceiver(9001))
 
 ```
 
 -   Parse the received data.
 
 ```scala
-//TODO
+
+ val processedDataStream = eventStream.
+        .flatMap(event => event.entities)
+        // ...processing
+        
 ```
 
 The received data is a DataStream of objects of the class **`NgsiEvent`**. This class has the following attributes:
@@ -53,7 +61,19 @@ import org.fiware.cosmos.orion.spark.connector.{OrionSink,OrionSinkObject,Conten
 -   Add sink to source.
 
 ```scala
-// TODO
+
+   val processedDataStream = eventStream.
+    // ... processing
+    .map(obj =>
+       new OrionSinkObject(
+           "{\"temperature_avg\": { \"value\":"+obj.temperature+", \"type\": \"Float\"}}", // Stringified JSON message
+           "http://context-broker-url:8080/v2/entities/Room1", // URL
+           ContentType.JSON, // Content type
+           HTTPMethod.POST) // HTTP method
+    )
+   
+   OrionSink.addSink( processedDataStream )
+   
 ```
 
 The sink accepts a `DataStream` of objects of the class **`OrionSinkObject`**. This class has 4 attributes:

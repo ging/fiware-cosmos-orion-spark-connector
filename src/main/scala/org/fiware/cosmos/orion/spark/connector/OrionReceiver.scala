@@ -6,7 +6,7 @@ import org.apache.spark.streaming.receiver.Receiver
 
 
 
-class OrionReceiver(host: String, port: Int)
+class OrionReceiver(port: Int)
   extends Receiver[NgsiEvent](StorageLevel.MEMORY_AND_DISK_2) with Logging {
 
 private var server: OrionHttpServer =_

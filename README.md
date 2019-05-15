@@ -103,26 +103,26 @@ Add it to your `pom.xml` file inside the dependencies section.
 -   Add source to Spark Environment. Indicate what port you want to listen to (e.g. 9001).
 
 ```scala
-<<<<<<< HEAD
+
  val sparkConf = new SparkConf().setAppName("CustomReceiver").setMaster("local[3]")
  val ssc = new StreamingContext(sparkConf, Seconds(10))
   
  val eventStream = ssc.receiverStream(new OrionReceiver(9001))
-=======
+
     // TODO
->>>>>>> 2c83eb01cbe94483f6227bfb77c64b387f9ca06d
+
 ```
 
 -   Parse the received data.
 
 ```scala
-<<<<<<< HEAD
+
  val processedDataStream = eventStream.
         .flatMap(event => event.entities)
         // ...processing
-=======
+
     // TODO
->>>>>>> 2c83eb01cbe94483f6227bfb77c64b387f9ca06d
+
 ```
 
 The received data is a DataStream of objects of the class **`NgsiEvent`**. This class has the following attributes: -
@@ -144,23 +144,20 @@ following properties: - **`type`**: Type of value (Float, Int,...). - **`value`*
 -   Add sink to source.
 
 ```scala
-<<<<<<< HEAD
-val processedDataStream = eventStream.
- // ... processing
- .map(obj =>
-    new OrionSinkObject(
-        "{\"temperature_avg\": { \"value\":"+obj.temperature+", \"type\": \"Float\"}}", // Stringified JSON message
-        "http://context-broker-url:8080/v2/entities/Room1", // URL
-        ContentType.JSON, // Content type
-        HTTPMethod.POST) // HTTP method
- )
-
-OrionSink.addSink( processedDataStream )
-=======
-    // TODO
->>>>>>> 2c83eb01cbe94483f6227bfb77c64b387f9ca06d
-
-```
+   
+   val processedDataStream = eventStream.
+    // ... processing
+    .map(obj =>
+       new OrionSinkObject(
+           "{\"temperature_avg\": { \"value\":"+obj.temperature+", \"type\": \"Float\"}}", // Stringified JSON message
+           "http://context-broker-url:8080/v2/entities/Room1", // URL
+           ContentType.JSON, // Content type
+           HTTPMethod.POST) // HTTP method
+    )
+   
+   OrionSink.addSink( processedDataStream )
+   
+   ```
 
 The sink accepts a `DataStream` of objects of the class
 **`OrionSinkObject`**. This class has 4 attributes:
