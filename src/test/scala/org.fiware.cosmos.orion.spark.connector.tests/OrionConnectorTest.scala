@@ -15,7 +15,7 @@ import org.mockito.Mockito.mock
 object Utils {
   final val Port = 9001
   final val SleepTime = 10000
-  final val SleepTimeShort = 2000
+  final val SleepTimeShort = 4000
   final val ServerAddress = "http://localhost:9001"
   final val OrionAddress = "http://localhost:2026"
   final val ContentType = "Content-Type"
@@ -31,7 +31,7 @@ object Utils {
   final val Demo = "demo"
   final val Test = "/test"
   final val BadContent = "BAD CONTENT"
-  final val OtherUrl = "http://localhost:9102"
+  final val OtherUrl = "http://localhost:9104"
 
 }
 

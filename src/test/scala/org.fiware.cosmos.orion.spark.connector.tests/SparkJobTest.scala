@@ -26,7 +26,7 @@ object SparkJobTest{
     val eventStream : DStream[NgsiEvent] = ssc.receiverStream(new OrionReceiver("localhost", Constants.Port))
 
     // Process event stream
-      eventStream
+      val processedDataStream = eventStream
       .flatMap(event => event.entities)
       .map(entity => {
         val temp = entity.attrs("temperature").value.asInstanceOf[Number].floatValue()
