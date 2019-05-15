@@ -33,7 +33,9 @@ object Utils {
   final val Demo = "demo"
   final val Test = "/test"
   final val BadContent = "BAD CONTENT"
+
   final val OtherUrl = "http://localhost:9102"
+
 
 }
 

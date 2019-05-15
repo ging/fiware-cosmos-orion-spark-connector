@@ -96,32 +96,33 @@ Add it to your `pom.xml` file inside the dependencies section.
     import org.fiware.cosmos.orion.spark.connector.{OrionSource}
 ```
 
--   Add source to Flink Environment. Indicate what port you want to listen to (e.g. 9001).
+-   Add source to Spark Environment. Indicate what port you want to listen to (e.g. 9001).
 
 ```scala
-    // TODO
+
+ val sparkConf = new SparkConf().setAppName("CustomReceiver").setMaster("local[3]")
+ val ssc = new StreamingContext(sparkConf, Seconds(10))
+  
+ val eventStream = ssc.receiverStream(new OrionReceiver(9001))
+
 ```
 
 -   Parse the received data.
 
 ```scala
-    // TODO
+
+ val processedDataStream = eventStream.
+        .flatMap(event => event.entities)
+        // ...processing
 ```
 
-    The received data is a DataStream of objects of the class **`NgsiEvent`**.
-    This class has the following attributes:
-    -   **`creationTime`**: Timestamp of arrival.
-    -   **`service`**: Fiware service extracted from the HTTP headers.
-    -   **`servicePath`**: Fiware service path extracted from the HTTP headers.
-    -   **`entities`**: Sequence of entites included in the message. Each entity
-        has the following attributes:
-        -   **`id`**: Identifier of the entity.
-        -   **`type`**: Node type.
-        -   **`attrs`**: Map of attributes in which the key is the attribute
-            name and the value is an object with the following properties:
-            -   **`type`**: Type of value (Float, Int,...).
-            -   **`value`**: Value of the attribute.
-            -   **`metadata`**: Additional metadata.
+The received data is a DataStream of objects of the class **`NgsiEvent`**. This class has the following attributes: -
+**`creationTime`**: Timestamp of arrival. - **`service`**: FIWARE service extracted from the HTTP headers. -
+**`servicePath`**: FIWARE service path extracted from the HTTP headers. - **`entities`**: Sequence of entites included
+in the message. Each entity has the following attributes: - **`id`**: Identifier of the entity. - **`type`**: Node
+type. - **`attrs`**: Map of attributes in which the key is the attribute name and the value is an object with the
+following properties: - **`type`**: Type of value (Float, Int,...). - **`value`**: Value of the attribute. -
+**`metadata`**: Additional metadata.
 
 #### OrionSink
 
@@ -134,8 +135,18 @@ Add it to your `pom.xml` file inside the dependencies section.
 -   Add sink to source.
 
 ```scala
-    // TODO
 
+val processedDataStream = eventStream.
+ // ... processing
+ .map(obj =>
+    new OrionSinkObject(
+        "{\"temperature_avg\": { \"value\":"+obj.temperature+", \"type\": \"Float\"}}", // Stringified JSON message
+        "http://context-broker-url:8080/v2/entities/Room1", // URL
+        ContentType.JSON, // Content type
+        HTTPMethod.POST) // HTTP method
+ )
+
+OrionSink.addSink( processedDataStream )
 ```
 
 The sink accepts a `DataStream` of objects of the class

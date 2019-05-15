@@ -24,7 +24,7 @@ object SparkJobTest{
     val eventStream : DStream[NgsiEvent] = ssc.receiverStream(new OrionReceiver("localhost", Constants.Port))
 
     // Process event stream
-    val processedStream =  eventStream
+      val processedDataStream = eventStream
       .flatMap(event => event.entities)
       .map(entity => {
         val temp = entity.attrs("temperature").value.asInstanceOf[Number].floatValue()
@@ -37,8 +37,8 @@ object SparkJobTest{
         simulatedNotification.maxPresVal = x._2._2
         OrionSinkObject("{'msg': 'hola'}","http://localhost:5000/fiware",ContentType.JSON, HTTPMethod.POST)
       })
-    processedStream.print()
-    OrionSink.addSink(processedStream)
+    processedDataStream.print()
+    OrionSink.addSink(processedDataStream)
 
 
     ssc.start()
