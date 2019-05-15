@@ -7,6 +7,4 @@ Some lessons on Big Data Fundamentals are offered in the
 
 Several examples are provided to facilitate getting started with the connector. They are hosted in a separate
 repository:
-[fiware-cosmos-orion-spark-connector-examples](https://github.com/ging/fiware-cosmos-spark-flink-connector-examples).
-
- 
+[fiware-cosmos-orion-spark-connector-examples](https://github.com/ging/fiware-cosmos-orion-spark-connector-examples).
