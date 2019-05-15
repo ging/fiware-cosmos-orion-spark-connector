@@ -3,13 +3,11 @@ package org.fiware.cosmos.orion.spark.connector.test
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.dstream.DStream
 import org.apache.spark.streaming.{Seconds, StreamingContext}
-import org.fiware.cosmos.orion.spark.connector.{NgsiEvent, OrionReceiver}
+import org.fiware.cosmos.orion.spark.connector._
 
 
 object Constants {
   final val Port = 9102
-  final val MaxWindow = 5
-  final val MinWindow = 2
 }
 
 /**
@@ -26,7 +24,7 @@ object SparkJobTest{
     val eventStream : DStream[NgsiEvent] = ssc.receiverStream(new OrionReceiver("localhost", Constants.Port))
 
     // Process event stream
-      eventStream
+    val processedStream =  eventStream
       .flatMap(event => event.entities)
       .map(entity => {
         val temp = entity.attrs("temperature").value.asInstanceOf[Number].floatValue()
@@ -37,11 +35,15 @@ object SparkJobTest{
       .map(x => {
         simulatedNotification.maxTempVal = x._2._1
         simulatedNotification.maxPresVal = x._2._2
-      }).print
+        OrionSinkObject("{'msg': 'hola'}","http://localhost:5000/fiware",ContentType.JSON, HTTPMethod.POST)
+      })
+    processedStream.print()
+    OrionSink.addSink(processedStream)
 
 
     ssc.start()
-    ssc.awaitTermination()
+    Thread.sleep(50000)
+    ssc.stop()
   }
 
   case class EntityNode(id: String, temperature: Float, pressure: Float)
