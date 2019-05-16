@@ -21,7 +21,7 @@ object SparkJobTest{
     val ssc = new StreamingContext(sparkConf, Seconds(10))
 
     // Create Orion Source. Receive notifications on port 9001
-    val eventStream : DStream[NgsiEvent] = ssc.receiverStream(new OrionReceiver("localhost", Constants.Port))
+    val eventStream : DStream[NgsiEvent] = ssc.receiverStream(new OrionReceiver(Constants.Port))
 
     // Process event stream
       val processedDataStream = eventStream
