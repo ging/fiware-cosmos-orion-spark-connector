@@ -3,7 +3,7 @@
 -   Import dependency.
 
 ```scala
-import org.fiware.cosmos.orion.spark.connector.{OrionSource}
+import org.fiware.cosmos.orion.spark.connector.{OrionReceiver}
 ```
 
 -   Add source to Spark Environment. Indicate what port you want to listen to (e.g. 9001).
