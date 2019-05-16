@@ -19,7 +19,7 @@ Cosmos is a FIWARE Generic Enabler. Therefore, it can be integrated as part of a
 is a curated framework of open source platform components which can be assembled together with other third-party
 platform components to accelerate the development of Smart Solutions.
 
-You can find more info at the [FIWARE developers site](https://developers.fiware.org/)and the main
+You can find more info at the [FIWARE developers site](https://developers.fiware.org/) and the main 
 [FIWARE site](https://fiware.org/).
 
 The complete list of FIWARE GEs and Incubated FIWARE GEs can be found at the
