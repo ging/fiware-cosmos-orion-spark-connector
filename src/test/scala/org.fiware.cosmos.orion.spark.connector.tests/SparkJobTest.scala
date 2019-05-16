@@ -35,9 +35,8 @@ object SparkJobTest{
       .map(x => {
         simulatedNotification.maxTempVal = x._2._1
         simulatedNotification.maxPresVal = x._2._2
-        OrionSinkObject("{'msg': 'hola'}","http://localhost:5000/fiware",ContentType.JSON, HTTPMethod.POST)
+        OrionSinkObject("{\"msg\": \"test\"}","http://localhost:3001/fiware",ContentType.JSON, HTTPMethod.POST)
       })
-    processedDataStream.print()
     OrionSink.addSink(processedDataStream)
 
 
