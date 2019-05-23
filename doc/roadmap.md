@@ -11,18 +11,22 @@ only, and this section may be revised to provide newer information at any time.
 
 ## Short term
 
-The following list of features are planned to be addressed in the short term, and incorporated in the next release of the product:
+The following list of features are planned to be addressed in the short term, and incorporated in the next release of
+the product:
 
- * **NGSI-LD**: Achieve support for the NGSI Linked data format.
+    * **NGSI-LD**: Achieve support for the NGSI Linked data format.
 
 ## Medium term
 
-The following list of features are planned to be addressed in the medium term, typically within the subsequent release(s) generated in the next 9 months after next planned release:
+The following list of features are planned to be addressed in the medium term, typically within the subsequent
+release(s) generated in the next 9 months after next planned release:
 
- * **Docker images**: Provide FIWARE Docker images to facilitate the deployment of a complete big data processing scenario.
+    * **Docker images**: Provide FIWARE Docker images to facilitate the deployment of a complete big data processing scenario.
 
 ## Long term
 
-The following list of features are proposals regarding the longer-term evolution of the product even though development of these features has not yet been scheduled for a release in the near future. Please feel free to contact us if you wish to get involved in the implementation or influence the roadmap:
+The following list of features are proposals regarding the longer-term evolution of the product even though development
+of these features has not yet been scheduled for a release in the near future. Please feel free to contact us if you
+wish to get involved in the implementation or influence the roadmap:
 
-* **Apache Ranger and Atlas**: Study the suitability of using these technologies for streaming scenarios.
+    * **Apache Ranger and Atlas**: Study the suitability of using these technologies for streaming scenarios.
