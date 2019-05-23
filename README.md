@@ -1,5 +1,3 @@
-:construction: WORK IN PROGRESS
-
 # FIWARE Cosmos Orion-Spark Connector
 
 [![](https://nexus.lab.fiware.org/static/badges/chapters/processing.svg)](https://www.fiware.org/developers/catalogue/)
