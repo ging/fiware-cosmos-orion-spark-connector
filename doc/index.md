@@ -1,7 +1,5 @@
 # FIWARE Cosmos Orion-Spark Connector
 
-**THIS IS A WORK IN PROGRESS BY NO MEANS READY FOR PRODUCTION**
-
 [![](https://nexus.lab.fiware.org/static/badges/chapters/processing.svg)](https://www.fiware.org/developers/catalogue/)
 [![License](https://img.shields.io/github/license/ging/fiware-cosmos-orion-spark-connector.svg)](#)
 [![](https://img.shields.io/badge/tag-fiware--cosmos-orange.svg?logo=stackoverflow)](http://stackoverflow.com/questions/tagged/fiware-cosmos)
@@ -19,7 +17,7 @@ Cosmos is a FIWARE Generic Enabler. Therefore, it can be integrated as part of a
 is a curated framework of open source platform components which can be assembled together with other third-party
 platform components to accelerate the development of Smart Solutions.
 
-You can find more info at the [FIWARE developers site](https://developers.fiware.org/) and the main
+You can find more info at the [FIWARE developers site](https://www.fiware.org/developers/) and the main
 [FIWARE site](https://fiware.org/).
 
 The complete list of FIWARE GEs and Incubated FIWARE GEs can be found at the
