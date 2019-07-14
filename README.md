@@ -4,15 +4,15 @@
 ![License](https://img.shields.io/github/license/ging/fiware-cosmos-orion-spark-connector.svg)
 [![](https://img.shields.io/badge/tag-fiware--cosmos-orange.svg?logo=stackoverflow)](http://stackoverflow.com/questions/tagged/fiware-cosmos)
 <br/>
-[![Documentation badge](https://readthedocs.org/projects/fiware-cosmos-spark/badge/?version=latest)](http://fiware-cosmos-spark.rtfd.io)
+[![Documentation badge](https://readthedocs.org/projects/fiware-cosmos-spark/badge/?version=latest)](https://fiware-cosmos-spark.readthedocs.io/en/latest/)
 [![Build Status](https://travis-ci.org/ging/fiware-cosmos-orion-spark-connector.svg?branch=master)](https://travis-ci.org/ging/fiware-cosmos-orion-spark-connector)
 [![Coverage Status](https://coveralls.io/repos/github/ging/fiware-cosmos-orion-spark-connector/badge.svg?branch=master)](https://coveralls.io/github/ging/fiware-cosmos-orion-spark-connector?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ff824123db8542a3ad34ee3e1be58bd4)](https://www.codacy.com/app/sonsoleslp/fiware-cosmos-orion-spark-connector?utm_source=github.com&utm_medium=referral&utm_content=ging/fiware-cosmos-orion-spark-connector&utm_campaign=Badge_Grade)
 [![Known Vulnerabilities](https://snyk.io/test/github/ging/fiware-cosmos-orion-spark-connector/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/ging/fiware-cosmos-orion-spark-connector?targetFile=pom.xml)
 ![Status](https://nexus.lab.fiware.org/static/badges/statuses/cosmos.svg)
 
-The [Cosmos Generic Enabler](https://github.com/ging/fiware-cosmos) simplifies Big Data analysis of context data and integrates with some of the many popular Big
-Data platforms.
+The [Cosmos Generic Enabler](https://github.com/ging/fiware-cosmos) simplifies Big Data analysis of context data and
+integrates with some of the many popular Big Data platforms.
 
 Cosmos is a FIWARE Generic Enabler. Therefore, it can be integrated as part of any platform “Powered by FIWARE”. FIWARE
 is a curated framework of open source platform components which can be assembled together with other third-party
