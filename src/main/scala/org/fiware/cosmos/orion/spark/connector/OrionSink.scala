@@ -47,7 +47,7 @@ object OrionSink {
   private def process(msg: OrionSinkObject): Unit = {
 
     val httpEntity : HttpEntityEnclosingRequestBase= createHttpMsg(msg)
-    val client = HttpClientBuilder.create.build
+    val client = HttpClientBuilder .create.build
 
     try {
       val response = client.execute(httpEntity)

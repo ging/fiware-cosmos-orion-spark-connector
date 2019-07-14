@@ -15,7 +15,7 @@ import org.mockito.Mockito.mock
 import scala.math.Numeric.Implicits.infixNumericOps
 
 object Utils {
-  final val Port = 9001
+  final val Port = 9007
   final val SleepTime = 10000
   final val SleepTimeShort = 2000
   final val ServerAddress = "http://localhost:9001"
