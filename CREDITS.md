@@ -1,8 +1,8 @@
 # Contributors ordered by number of commits
 
-César Valencia Blancas <Widou>
-
 Sonsoles López Pernas <sonsoleslp>
+
+César Valencia Blancas <Widou>
 
 Jason Fox <jason-fox>
 
