@@ -18,7 +18,7 @@ is a curated framework of open source platform components which can be assembled
 platform components to accelerate the development of Smart Solutions.
 
 You can find more info at the [FIWARE developers site](https://www.fiware.org/developers/) and the main
-[FIWARE site](https://fiware.org/).
+[FIWARE site](https://www.fiware.org/).
 
 The complete list of FIWARE GEs and Incubated FIWARE GEs can be found at the
 [FIWARE Catalogue](https://github.com/fiware/catalogue)
