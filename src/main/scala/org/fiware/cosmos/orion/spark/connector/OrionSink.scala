@@ -11,7 +11,7 @@ import org.apache.http.impl.client.HttpClientBuilder
 import org.slf4j.LoggerFactory
 
 
-case class OrionSinkObject(content: String, url: String, contentType: ContentType.Value, method: HTTPMethod.Value)
+case class OrionSinkObject(content: String, url: String, contentType: ContentType.Value, method: HTTPMethod.Value, headers: Map[String,String]= (Map[String,String]()))
 
 
 
@@ -77,6 +77,9 @@ object OrionSink {
  def createHttpMsg(msg: OrionSinkObject) : HttpEntityEnclosingRequestBase= {
     val httpEntity = getMethod(msg.method, msg.url)
     httpEntity.setHeader("Content-type", msg.contentType.toString)
+   if(msg.headers.nonEmpty){
+     msg.headers.foreach({case(k,v) => httpEntity.setHeader(k,v)})
+   }
     httpEntity.setEntity(new StringEntity(msg.content))
     httpEntity
   }

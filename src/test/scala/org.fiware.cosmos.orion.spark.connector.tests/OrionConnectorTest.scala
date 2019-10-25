@@ -33,6 +33,8 @@ object Utils {
   final val Demo = "demo"
   final val Test = "/test"
   final val BadContent = "BAD CONTENT"
+  final val All= "*/*"
+  final val Headers= Map(Utils.Accept->Utils.All)
 
   final val OtherUrl = "http://localhost:9102"
 
@@ -105,11 +107,12 @@ class OrionConnectorTest extends  BaseTest{
   }
 
   @Test def buildHttpPostSinkEntity : Unit = {
-    val os = new OrionSinkObject(Utils.Content, Utils.OrionAddress,  ContentType.Plain, HTTPMethod.POST)
+    val os = new OrionSinkObject(Utils.Content, Utils.OrionAddress,  ContentType.Plain, HTTPMethod.POST, Utils.Headers)
     val httpMsg = OrionSink.createHttpMsg(os)
     val content = scala.io.Source.fromInputStream(httpMsg.getEntity.getContent).mkString
 
     Assert.assertEquals(httpMsg.getHeaders(Utils.ContentType)(0).getValue, ContentType.Plain.toString())
+    Assert.assertEquals(httpMsg.getHeaders(Utils.Accept)(0).getValue,Utils.All)
     Assert.assertEquals(httpMsg.getMethod(), "POST")
     Assert.assertEquals(content, Utils.Content)
   }
