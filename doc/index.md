@@ -28,10 +28,17 @@ The complete list of FIWARE GEs and Incubated FIWARE GEs can be found at the
 The Cosmos BigData Analysis GE is a set of tools that help achieving the tasks of Streaming and Batch processing over
 context data. These tools are:
 
--   Orion-Flink Connector (Source and Sink)
--   Apache Flink Processing Engine
--   Apache Spark Processing Engine
--   Streaming processing examples using Orion Context Broker
+-   [Orion-Flink Connector (Source and Sink)](https://github.com/ging/fiware-cosmos-orion-flink-connector)
+
+-   [Orion-Flink Connector Streaming Examples](https://github.com/ging/fiware-cosmos-orion-flink-connector-examples)
+
+-   [Apache Flink Processing Engine](https://flink.apache.org/)
+
+-   [Orion-Spark Connector (Source and Sink)](https://github.com/ging/fiware-cosmos-orion-spark-connector)
+
+-   [Orion-Spark Connector Streaming Examples (work in progress)](https://github.com/ging/fiware-cosmos-orion-spark-connector)
+
+-   [Apache Spark Processing Engine](https://spark.apache.org/)
 
 ## Why use Cosmos?
 

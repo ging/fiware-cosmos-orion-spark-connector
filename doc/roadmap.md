@@ -21,6 +21,7 @@ the product:
 The following list of features are planned to be addressed in the medium term, typically within the subsequent
 release(s) generated in the next 9 months after next planned release:
 
+    * **Data usage control**: Support Spark generated traces within the FIWARE Data Usage Control framework.
     * **Docker images**: Provide FIWARE Docker images to facilitate the deployment of a complete big data processing scenario.
 
 ## Long term
