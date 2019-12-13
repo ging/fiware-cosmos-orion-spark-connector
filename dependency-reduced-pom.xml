@@ -4,7 +4,7 @@
   <groupId>org.fiware.cosmos</groupId>
   <artifactId>orion.spark.connector</artifactId>
   <name>Fiware Orion Spark Connector</name>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
   <url>https://www.fiware.org/</url>
   <build>
     <plugins>
