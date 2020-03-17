@@ -41,7 +41,7 @@ object SparkJobTest{
 
 
     ssc.start()
-    Thread.sleep(50000)
+    Thread.sleep(10*60000)
     ssc.stop()
   }
 
