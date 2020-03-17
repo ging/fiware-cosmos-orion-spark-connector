@@ -66,6 +66,7 @@ conclusions as to the state of your smart solution and bring value to your solut
 This is a Spark connector for the FIWARE Orion Context Broker. It has two parts:
 
 -   **`OrionReceiver`**: Source for receiving NGSI v2 events in the shape of HTTP messages from subscriptions.
+-   **`NGSILDReceiver`**: Source for receiving NGSI-LD events from subscriptions via HTTP.
 -   **`OrionSink`**: Sink for writing back to the Context Broker.
 
 ### Installation
@@ -73,7 +74,7 @@ This is a Spark connector for the FIWARE Orion Context Broker. It has two parts:
 Download the JAR from the latest release. In your project directory run:
 
 ```console
-mvn install:install-file -Dfile=$(PATH_DOWNLOAD)/orion.spark.connector-1.2.0.jar -DgroupId=org.fiware.cosmos -DartifactId=orion.spark.connector -Dversion=1.2.0 -Dpackaging=jar
+mvn install:install-file -Dfile=$(PATH_DOWNLOAD)/orion.spark.connector-1.2.1.jar -DgroupId=org.fiware.cosmos -DartifactId=orion.spark.connector -Dversion=1.2.1 -Dpackaging=jar
 ```
 
 Add it to your `pom.xml` file inside the dependencies section.
@@ -82,7 +83,7 @@ Add it to your `pom.xml` file inside the dependencies section.
 <dependency>
     <groupId>org.fiware.cosmos</groupId>
     <artifactId>orion.spark.connector</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 </dependency>
 ```
 
@@ -162,6 +163,7 @@ The sink accepts a `DataStream` of objects of the class **`OrionSinkObject`**. T
 -   **`url`**: URL to which the message should be sent.
 -   **`contentType`**: Type of HTTP content of the message. It can be `ContentType.JSON` or `ContentType.Plain`.
 -   **`method`**: HTTP method of the message. It can be `HTTPMethod.POST`, `HTTPMethod.PUT` or `HTTPMethod.PATCH`.
+-   **`headers`** (Optional): String Map including any additional HTTP headers.
 
 #### Production
 
@@ -176,13 +178,16 @@ The sink accepts a `DataStream` of objects of the class **`OrionSinkObject`**. T
 ### Academy Courses
 
 Some lessons on Big Data Fundamentals are offered in the
-[FIWARE Academy](https://fiware-academy.readthedocs.io/en/latest/processing/cosmos/) .
+[FIWARE Academy](https://fiware-academy.readthedocs.io/en/latest/processing/cosmos/).
 
 ### Code Examples
 
 Several examples are provided to facilitate getting started with the connector. They are hosted in a separate
 repository:
 [fiware-cosmos-orion-spark-connector-examples](https://github.com/ging/fiware-cosmos-orion-spark-connector-examples).
+
+If you would like to see an example of a complete scenario using the FIWARE Orion Spark Connector with SparkML check out
+the [project presented in the 2019 Summit in Berlin](https://github.com/ging/fiware-global-summit-berlin-2019-ml).
 
 ## Quality Assurance
 

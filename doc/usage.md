@@ -12,7 +12,7 @@ import org.fiware.cosmos.orion.spark.connector.{OrionReceiver}
 
  val sparkConf = new SparkConf().setAppName("CustomReceiver").setMaster("local[3]")
  val ssc = new StreamingContext(sparkConf, Seconds(10))
-  
+
  val eventStream = ssc.receiverStream(new OrionReceiver(9001))
 
 ```
@@ -24,7 +24,7 @@ import org.fiware.cosmos.orion.spark.connector.{OrionReceiver}
  val processedDataStream = eventStream.
         .flatMap(event => event.entities)
         // ...processing
-        
+
 ```
 
 The received data is a DataStream of objects of the class **`NgsiEvent`**. This class has the following attributes:
@@ -71,12 +71,12 @@ import org.fiware.cosmos.orion.spark.connector.{OrionSink,OrionSinkObject,Conten
            ContentType.JSON, // Content type
            HTTPMethod.POST) // HTTP method
     )
-   
+
    OrionSink.addSink( processedDataStream )
-   
+
 ```
 
-The sink accepts a `DataStream` of objects of the class **`OrionSinkObject`**. This class has 4 attributes:
+The sink accepts a `DataStream` of objects of the class **`OrionSinkObject`**. This class has 5 attributes:
 
 -   **`content`**: Message content in String format. If it is a JSON, you need to make sure to stringify it before
     sending it.
@@ -86,6 +86,8 @@ The sink accepts a `DataStream` of objects of the class **`OrionSinkObject`**. T
 -   **`contentType`**: Type of HTTP content of the message. It can be `ContentType.JSON` or `ContentType.Plain`.
 
 -   **`method`**: HTTP method of the message. It can be `HTTPMethod.POST`, `HTTPMethod.PUT` or `HTTPMethod.PATCH`.
+
+-   **`headers`** (Optional): String Map including any additional HTTP headers.
 
 ### Production
 
