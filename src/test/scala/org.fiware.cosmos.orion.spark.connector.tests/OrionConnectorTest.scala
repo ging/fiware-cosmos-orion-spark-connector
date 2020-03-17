@@ -7,17 +7,15 @@ import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.http.{DefaultFullHttpRequest, HttpMethod, HttpVersion}
 import io.netty.util.CharsetUtil
 import org.apache.http.client.methods.{HttpPatch, HttpPost, HttpPut}
-import org.fiware.cosmos.orion.spark.connector.test.SparkJobTest
 import org.fiware.cosmos.orion.spark.connector._
+import org.fiware.cosmos.orion.spark.connector.test.SparkJobTest
 import org.junit.{Assert, Test}
 import org.mockito.Mockito.mock
 
-import scala.math.Numeric.Implicits.infixNumericOps
-
 object Utils {
   final val Port = 9007
-  final val SleepTime = 10000
-  final val SleepTimeShort = 2000
+  final val SleepTime = 40000
+  final val SleepTimeShort = 12000
   final val ServerAddress = "http://localhost:9001"
   final val OrionAddress = "http://localhost:2026"
   final val ContentType = "Content-Type"
