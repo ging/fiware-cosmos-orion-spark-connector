@@ -171,7 +171,7 @@ The received data is a DataStream of objects of the class **`NgsiEvent LD`**. Th
         following properties:
         -   **`type`**: Type of value (Float, Int,...).
         -   **`value`**: Value of the attribute.
-    -   **`@context`**: Map of attributes in which the key is the attribute name and the value is an object with the
+    -   **`@context`**: Map of terms to URIs providing an unambiguous definition.
 
 #### OrionSink
 
