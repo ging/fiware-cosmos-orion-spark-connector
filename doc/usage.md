@@ -1,4 +1,4 @@
-### OrionSource
+### OrionReceiver
 
 -   Import dependency.
 
@@ -27,7 +27,7 @@ import org.fiware.cosmos.orion.spark.connector.{OrionReceiver}
 
 ```
 
-The received data is a DataStream of objects of the class **`NgsiEvent`**. This class has the following attributes:
+The received data is a DataStream of objects of the class **`NgsiEvent v2`**. This class has the following attributes:
 
 -   **`creationTime`**: Timestamp of arrival.
 
@@ -49,7 +49,61 @@ The received data is a DataStream of objects of the class **`NgsiEvent`**. This 
         -   **`value`**: Value of the attribute.
 
         -   **`metadata`**: Additional metadata.
+        
+        
+### NGSILDReceiver
 
+-   Import dependency.
+
+```scala
+import org.fiware.cosmos.orion.spark.connector.{NGSILDReceiver}
+```
+
+-   Add source to Spark Environment. Indicate what port you want to listen to (e.g. 9001).
+
+```scala
+
+ val sparkConf = new SparkConf().setAppName("CustomReceiver").setMaster("local[3]")
+ val ssc = new StreamingContext(sparkConf, Seconds(10))
+
+ val eventStream = ssc.receiverStream(new NGSILDReceiver(9001))
+
+```
+
+-   Parse the received data.
+
+```scala
+
+ val processedDataStream = eventStream.
+        .flatMap(event => event.entities)
+        // ...processing
+
+```
+
+The received data is a DataStream of objects of the class **`NgsiEvent LD`**. This class has the following attributes:
+
+-   **`creationTime`**: Timestamp of arrival.
+
+-   **`service`**: FIWARE service extracted from the HTTP headers.
+
+-   **`servicePath`**: FIWARE service path extracted from the HTTP headers.
+
+-   **`entities`**: Sequence of entites included in the message. Each entity has the following attributes:
+
+    -   **`id`**: Identifier of the entity.
+
+    -   **`type`**: Node type.
+
+    -   **`attrs`**: Map of attributes in which the key is the attribute name and the value is an object with the
+        following properties:
+
+        -   **`type`**: Type of value (Float, Int,...).
+
+        -   **`value`**: Value of the attribute.
+
+    -   **`@context`**: Map of terms to URIs providing an unambiguous definition.
+    
+    
 ### OrionSink
 
 -   Import dependency.

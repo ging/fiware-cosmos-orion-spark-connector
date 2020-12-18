@@ -1,6 +1,6 @@
 # FIWARE Cosmos Orion-Spark Connector
 
-[![](https://nexus.lab.fiware.org/static/badges/chapters/processing.svg)](https://www.fiware.org/developers/catalogue/)
+[![](https://nexus.lab.fiware.org/static/badges/chapters/core.svg)](https://www.fiware.org/developers/catalogue/)
 ![License](https://img.shields.io/github/license/ging/fiware-cosmos-orion-spark-connector.svg)
 [![](https://img.shields.io/badge/tag-fiware--cosmos-orange.svg?logo=stackoverflow)](http://stackoverflow.com/questions/tagged/fiware-cosmos)
 <br/>
@@ -19,9 +19,9 @@ is a curated framework of open source platform components which can be assembled
 platform components to accelerate the development of Smart Solutions.
 
 This project is part of [FIWARE](https://www.fiware.org/). For more information check the FIWARE Catalogue entry for
-[Context Processing, Analysis and Visualization](https://github.com/Fiware/catalogue/tree/master/processing).
+[Core Context Management](https://github.com/Fiware/catalogue/tree/master/core).
 
-| :books: [Documentation](https://fiware-cosmos-spark.readthedocs.io) | :mortar_board: [Academy](https://fiware-academy.readthedocs.io/en/latest/processing/cosmos) | :dart: [Roadmap](https://github.com/ging/fiware-cosmos-orion-spark-connector/blob/master/ROADMAP.md) |
+| :books: [Documentation](https://fiware-cosmos-spark.readthedocs.io) | :mortar_board: [Academy](https://fiware-academy.readthedocs.io/en/latest/core/cosmos) | :dart: [Roadmap](https://github.com/ging/fiware-cosmos-orion-spark-connector/blob/master/ROADMAP.md) |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 
 
@@ -89,12 +89,12 @@ Add it to your `pom.xml` file inside the dependencies section.
 
 ### Usage: API Overview
 
-#### OrionSource
+#### OrionReceiver
 
 -   Import dependency.
 
 ```scala
-    import org.fiware.cosmos.orion.spark.connector.{OrionSource}
+    import org.fiware.cosmos.orion.spark.connector.{OrionReceiver}
 ```
 
 -   Add source to Spark Environment. Indicate what port you want to listen to (e.g. 9001).
@@ -117,7 +117,7 @@ Add it to your `pom.xml` file inside the dependencies section.
         // ...processing
 ```
 
-The received data is a DataStream of objects of the class **`NgsiEvent`**. This class has the following attributes:
+The received data is a DataStream of objects of the class **`NgsiEvent v2`**. This class has the following attributes:
 
 -   **`creationTime`**: Timestamp of arrival.
 -   **`service`**: FIWARE service extracted from the HTTP headers.
@@ -130,6 +130,48 @@ The received data is a DataStream of objects of the class **`NgsiEvent`**. This 
         -   **`type`**: Type of value (Float, Int,...).
         -   **`value`**: Value of the attribute.
         -   **`metadata`**: Additional metadata.
+
+#### NGSILDReceiver
+
+-   Import dependency.
+
+```scala
+    import org.fiware.cosmos.orion.spark.connector.{NGSILDReceiver}
+```
+
+-   Add source to Spark Environment. Indicate what port you want to listen to (e.g. 9001).
+
+```scala
+
+ val sparkConf = new SparkConf().setAppName("CustomReceiver").setMaster("local[3]")
+ val ssc = new StreamingContext(sparkConf, Seconds(10))
+
+ val eventStream = ssc.receiverStream(new NGSILDReceiver(9001))
+
+```
+
+-   Parse the received data.
+
+```scala
+
+ val processedDataStream = eventStream.
+        .flatMap(event => event.entities)
+        // ...processing
+```
+
+The received data is a DataStream of objects of the class **`NgsiEvent LD`**. This class has the following attributes:
+
+-   **`creationTime`**: Timestamp of arrival.
+-   **`service`**: FIWARE service extracted from the HTTP headers.
+-   **`servicePath`**: FIWARE service path extracted from the HTTP headers.
+-   **`entities`**: Sequence of entites included in the message. Each entity has the following attributes:
+    -   **`id`**: Identifier of the entity.
+    -   **`type`**: Node type.
+    -   **`attrs`**: Map of attributes in which the key is the attribute name and the value is an object with the
+        following properties:
+        -   **`type`**: Type of value (Float, Int,...).
+        -   **`value`**: Value of the attribute.
+    -   **`@context`**: Map of terms to URIs providing an unambiguous definition.
 
 #### OrionSink
 

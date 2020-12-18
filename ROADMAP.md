@@ -16,17 +16,18 @@ only, and this section may be revised to provide newer information at any time.
 The following list of features are planned to be addressed in the short term, and incorporated in the next release of
 the product:
 
--   **NGSI-LD**: Achieve support for the NGSI Linked data format.
-
--   **Spark tutorial**: Release the Spark step-by-step tutorial.
+-   **ML scenarios**: Developing ML sample scenarios that showcase the capabilities of SparkML when combined with FIWARE GEs.
 
 ## Medium term
 
 The following list of features are planned to be addressed in the medium term, typically within the subsequent
 release(s) generated in the next 9 months after next planned release:
 
+-   **Data usage**: Support the Spark processing engine within the FIWARE data usage control framework.
+
 -   **Docker images**: Provide FIWARE Docker images to facilitate the deployment of a complete big data processing
     scenario.
+    
 
 ## Long term
 
