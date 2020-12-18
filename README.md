@@ -22,7 +22,7 @@ This project is part of [FIWARE](https://www.fiware.org/). For more information 
 [Core Context Management](https://github.com/Fiware/catalogue/tree/master/core).
 
 | :books: [Documentation](https://fiware-cosmos-spark.readthedocs.io) | :mortar_board: [Academy](https://fiware-academy.readthedocs.io/en/latest/core/cosmos) | :dart: [Roadmap](https://github.com/ging/fiware-cosmos-orion-spark-connector/blob/master/ROADMAP.md) |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 
 
 ## Table of Contents
@@ -74,7 +74,7 @@ This is a Spark connector for the FIWARE Orion Context Broker. It has two parts:
 Download the JAR from the latest release. In your project directory run:
 
 ```console
-mvn install:install-file -Dfile=$(PATH_DOWNLOAD)/orion.spark.connector-1.2.1.jar -DgroupId=org.fiware.cosmos -DartifactId=orion.spark.connector -Dversion=1.2.1 -Dpackaging=jar
+mvn install:install-file -Dfile=$(PATH_DOWNLOAD)/orion.spark.connector-1.2.2.jar -DgroupId=org.fiware.cosmos -DartifactId=orion.spark.connector -Dversion=1.2.2 -Dpackaging=jar
 ```
 
 Add it to your `pom.xml` file inside the dependencies section.
@@ -83,7 +83,7 @@ Add it to your `pom.xml` file inside the dependencies section.
 <dependency>
     <groupId>org.fiware.cosmos</groupId>
     <artifactId>orion.spark.connector</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
 </dependency>
 ```
 

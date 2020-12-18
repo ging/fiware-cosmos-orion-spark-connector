@@ -49,8 +49,7 @@ The received data is a DataStream of objects of the class **`NgsiEvent v2`**. Th
         -   **`value`**: Value of the attribute.
 
         -   **`metadata`**: Additional metadata.
-        
-        
+
 ### NGSILDReceiver
 
 -   Import dependency.
@@ -102,8 +101,7 @@ The received data is a DataStream of objects of the class **`NgsiEvent LD`**. Th
         -   **`value`**: Value of the attribute.
 
     -   **`@context`**: Map of terms to URIs providing an unambiguous definition.
-    
-    
+
 ### OrionSink
 
 -   Import dependency.
