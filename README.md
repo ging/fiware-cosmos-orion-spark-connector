@@ -5,7 +5,7 @@
 [![](https://img.shields.io/badge/tag-fiware--cosmos-orange.svg?logo=stackoverflow)](http://stackoverflow.com/questions/tagged/fiware-cosmos)
 <br/>
 [![Documentation badge](https://readthedocs.org/projects/fiware-cosmos-spark/badge/?version=latest)](https://fiware-cosmos-spark.readthedocs.io/en/latest/)
-[![Build Status](https://travis-ci.org/ging/fiware-cosmos-orion-spark-connector.svg?branch=master)](https://travis-ci.org/ging/fiware-cosmos-orion-spark-connector)
+[![CI](https://github.com/ging/fiware-cosmos-orion-spark-connector/workflows/CI/badge.svg)](https://github.com/ging/fiware-cosmos-orion-spark-connector/actions)
 [![Coverage Status](https://coveralls.io/repos/github/ging/fiware-cosmos-orion-spark-connector/badge.svg?branch=master)](https://coveralls.io/github/ging/fiware-cosmos-orion-spark-connector?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ff824123db8542a3ad34ee3e1be58bd4)](https://app.codacy.com/project/sonsoleslp/fiware-cosmos-orion-spark-connector/dashboard?utm_source=github.com&utm_medium=referral&utm_content=ging/fiware-cosmos-orion-spark-connector&utm_campaign=Badge_Grade)
 [![Known Vulnerabilities](https://snyk.io/test/github/ging/fiware-cosmos-orion-spark-connector/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/ging/fiware-cosmos-orion-spark-connector?targetFile=pom.xml)
