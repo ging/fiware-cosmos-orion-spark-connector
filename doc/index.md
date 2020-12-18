@@ -1,14 +1,16 @@
 # FIWARE Cosmos Orion-Spark Connector
 
 [![](https://nexus.lab.fiware.org/static/badges/chapters/core.svg)](https://www.fiware.org/developers/catalogue/)
-[![License](https://img.shields.io/github/license/ging/fiware-cosmos-orion-spark-connector.svg)](#)
+![License](https://img.shields.io/github/license/ging/fiware-cosmos-orion-spark-connector.svg)
 [![](https://img.shields.io/badge/tag-fiware--cosmos-orange.svg?logo=stackoverflow)](http://stackoverflow.com/questions/tagged/fiware-cosmos)
 <br/>
 [![Documentation badge](https://readthedocs.org/projects/fiware-cosmos-spark/badge/?version=latest)](https://fiware-cosmos-spark.readthedocs.io/en/latest/)
 [![CI](https://github.com/ging/fiware-cosmos-orion-spark-connector/workflows/CI/badge.svg)](https://github.com/ging/fiware-cosmos-orion-spark-connector/actions)
 [![Coverage Status](https://coveralls.io/repos/github/ging/fiware-cosmos-orion-spark-connector/badge.svg?branch=master)](https://coveralls.io/github/ging/fiware-cosmos-orion-spark-connector?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ff824123db8542a3ad34ee3e1be58bd4)](https://app.codacy.com/project/sonsoleslp/fiware-cosmos-orion-spark-connector/dashboard?utm_source=github.com&utm_medium=referral&utm_content=ging/fiware-cosmos-orion-spark-connector&utm_campaign=Badge_Grade)
 [![Known Vulnerabilities](https://snyk.io/test/github/ging/fiware-cosmos-orion-spark-connector/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/ging/fiware-cosmos-orion-spark-connector?targetFile=pom.xml)
-[![Status](https://nexus.lab.fiware.org/static/badges/statuses/cosmos.svg)](#)
+![Status](https://nexus.lab.fiware.org/static/badges/statuses/cosmos.svg)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4528/badge)](https://bestpractices.coreinfrastructure.org/projects/4528)
 
 The Cosmos Generic Enabler enables easier BigData analysis over context, integrated with some of the most popular
 BigData platforms.
