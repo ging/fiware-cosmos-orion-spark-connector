@@ -6,7 +6,7 @@
 
     <groupId>org.fiware.cosmos</groupId>
     <artifactId>orion.spark.connector</artifactId>
-    <version>1.2.2</version>
+    <version>1.2.3</version>
     <packaging>jar</packaging>
 
     <name>Fiware Orion Spark Connector</name>
@@ -14,9 +14,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spark.version>2.4.7</spark.version>
-        <scala.binary.version>2.11</scala.binary.version>
-        <scala.version>2.11.12</scala.version>
+        <spark.version>3.0.0</spark.version>
+        <scala.binary.version>2.12</scala.binary.version>
+        <scala.version>2.12.10</scala.version>
     </properties>
 
 
@@ -49,13 +49,13 @@
         <!-- https://mvnrepository.com/artifact/org.json4s/json4s-jackson -->
         <dependency>
             <groupId>org.json4s</groupId>
-            <artifactId>json4s-jackson_2.11</artifactId>
-            <version>3.6.10</version>
+            <artifactId>json4s-jackson_2.12</artifactId>
+            <version>3.6.7</version>
         </dependency>
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>4.1.44.Final</version>
+            <version>4.1.30.Final</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -65,7 +65,7 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.13</version>
+            <version>4.5.9</version>
         </dependency>
         <dependency>
             <groupId>org.scala-lang.modules</groupId>
@@ -294,6 +294,7 @@
                     <maxmem>256m</maxmem>
                     <!-- aggregated reports for multi-module projects -->
                     <aggregate>true</aggregate>
+                    <check/>
                 </configuration>
             </plugin>
             <plugin>
@@ -368,4 +369,4 @@
             </dependencies>
         </profile>
     </profiles>
- </project>
+</project>
