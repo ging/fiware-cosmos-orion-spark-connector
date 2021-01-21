@@ -31,11 +31,21 @@ import org.slf4j.LoggerFactory
 /**
  * Netty HTTP server
  *
- * @param callback
+ * @param callback  Connector
+ * @param entity Entity name
+ * @param cbUrl Context broker URL
+ * @param description Notification description
+ * @param callbackHost Host name
+ * @param callbackPort Host port
  * @param threadNum cpu number used by netty epoll
  * @param logLevel  netty log level
  */
 class OrionHttpServer(callback: NgsiEvent => Unit,
+  entity: String,
+  cbUrl: String,
+  description: String,
+  callbackHost: String,
+  callbackPort: Int,
   threadNum: Int = Runtime.getRuntime.availableProcessors(),
   logLevel: LogLevel = LogLevel.INFO
 ) extends ServerTrait {
@@ -74,12 +84,21 @@ class OrionHttpServer(callback: NgsiEvent => Unit,
           }
         })
       val f = b.bind(portNotInUse)
+
       f.syncUninterruptibly()
       val ch: Channel = f.channel()
       isRunning.set(true)
       currentAddr = ch.localAddress().asInstanceOf[InetSocketAddress]
       register(currentAddr, callbackUrl)
+      val assignedPort = currentAddr.getPort()
+      val subscription = new OrionSubscription (entity, cbUrl, description, callbackHost, assignedPort)
+      if (entity.nonEmpty){
+        val subscriptionId = subscription.subscribe()
+        sys.addShutdownHook(subscription.unsubscribe())
+
+      }
       ch.closeFuture().sync()
+      subscription.unsubscribe()
       currentAddr
     } else {
       currentAddr

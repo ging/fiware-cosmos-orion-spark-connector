@@ -5,19 +5,29 @@ import org.apache.spark.storage.StorageLevel
 import org.apache.spark.streaming.receiver.Receiver
 
 
-
-class OrionReceiver(port: Int)
+class OrionReceiver(entity: String,
+                    cbUrl: String = "",
+                    description: String = "",
+                    callbackHost: String =  "",
+                    callbackPort: Int = 0)
   extends Receiver[NgsiEvent](StorageLevel.MEMORY_AND_DISK_2) with Logging {
 
-private var server: OrionHttpServer =_
-
+  def this(port: Int) {
+      this("","","","", port)
+  }
+  private var server: OrionHttpServer =_
+  private var subscriptionId : String = ""
   def onStart() = {
-    server = new OrionHttpServer(store)
-    server.start(port, None)
+    server = new OrionHttpServer(store, entity, cbUrl, description, callbackHost, callbackPort)
+    server.start(callbackPort, None)
+
   }
 
   def onStop(): Unit = {
     server.close()
+    println("CLOSING SERVER")
   }
+
+
 
 }

@@ -6,7 +6,8 @@ import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.http.{DefaultFullHttpRequest, HttpMethod, HttpVersion}
 import io.netty.util.CharsetUtil
-import org.apache.http.client.methods.{HttpPatch, HttpPost, HttpPut}
+import org.apache.http.HttpEntityEnclosingRequest
+import org.apache.http.client.methods.{HttpEntityEnclosingRequestBase, HttpPatch, HttpPost, HttpPut}
 import org.fiware.cosmos.orion.spark.connector._
 import org.fiware.cosmos.orion.spark.connector.test.SparkJobTest
 import org.junit.{Assert, Test}
@@ -106,7 +107,7 @@ class OrionConnectorTest extends  BaseTest{
 
   @Test def buildHttpPostSinkEntity : Unit = {
     val os = new OrionSinkObject(Utils.Content, Utils.OrionAddress,  ContentType.Plain, HTTPMethod.POST, Utils.Headers)
-    val httpMsg = OrionSink.createHttpMsg(os)
+    val httpMsg = OrionSink.createHttpMsg(os).asInstanceOf[HttpEntityEnclosingRequestBase]
     val content = scala.io.Source.fromInputStream(httpMsg.getEntity.getContent).mkString
 
     Assert.assertEquals(httpMsg.getHeaders(Utils.ContentType)(0).getValue, ContentType.Plain.toString())
@@ -117,7 +118,7 @@ class OrionConnectorTest extends  BaseTest{
 
   @Test def buildHttpPutSinkEntity : Unit = {
     val os = new OrionSinkObject(Utils.Content, Utils.OrionAddress,  ContentType.JSON, HTTPMethod.PUT)
-    val httpMsg = OrionSink.createHttpMsg(os)
+    val httpMsg = OrionSink.createHttpMsg(os).asInstanceOf[HttpEntityEnclosingRequestBase]
     val content = scala.io.Source.fromInputStream(httpMsg.getEntity.getContent).mkString
 
     Assert.assertEquals(httpMsg.getHeaders(Utils.ContentType)(0).getValue, ContentType.JSON.toString())
@@ -127,7 +128,7 @@ class OrionConnectorTest extends  BaseTest{
 
   @Test def buildHttpPatchSinkEntity : Unit = {
     val os = new OrionSinkObject(Utils.Content, Utils.OrionAddress,  ContentType.JSON, HTTPMethod.PATCH)
-    val httpMsg = OrionSink.createHttpMsg(os)
+    val httpMsg = OrionSink.createHttpMsg(os).asInstanceOf[HttpEntityEnclosingRequestBase]
     val content = scala.io.Source.fromInputStream(httpMsg.getEntity.getContent).mkString
 
     Assert.assertEquals(httpMsg.getHeaders(Utils.ContentType)(0).getValue, ContentType.JSON.toString())
@@ -142,13 +143,13 @@ class OrionConnectorTest extends  BaseTest{
   }
 
   @Test (expected=classOf[java.lang.Exception]) def nettyServerCallbackUrl : Unit = {
-    val os = new OrionHttpServer(NgsiEvent => Unit)
+    val os = new OrionHttpServer(NgsiEvent => Unit,"","","","",Utils.Port)
     Assert.assertEquals(os.startNettyServer(Utils.Port,Some("http://callback")).getPort(),Utils.Port)
     os.close()
   }
 
   @Test def nettyServerNoCallbackUrl : Unit = {
-    val os : OrionHttpServer = new OrionHttpServer(NgsiEvent => Unit)
+    val os : OrionHttpServer = new OrionHttpServer(NgsiEvent => Unit,"","","","",Utils.Port)
     new Thread(new Runnable {
       def run() {
         Thread.sleep(Utils.SleepTime)

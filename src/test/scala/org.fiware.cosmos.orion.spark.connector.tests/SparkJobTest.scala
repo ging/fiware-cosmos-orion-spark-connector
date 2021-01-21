@@ -7,7 +7,7 @@ import org.fiware.cosmos.orion.spark.connector._
 
 
 object Constants {
-  final val Port = 9102
+  final val Port = 0
 }
 
 /**
@@ -21,7 +21,9 @@ object SparkJobTest{
     val ssc = new StreamingContext(sparkConf, Seconds(10))
 
     // Create Orion Source. Receive notifications on port 9001
-    val eventStream : DStream[NgsiEvent] = ssc.receiverStream(new OrionReceiver(Constants.Port))
+
+    val eventStream : DStream[NgsiEvent] = ssc.receiverStream(new OrionReceiver ("Room1", "http://localhost:1026", "My notification", "http://localhost"))
+    // val eventStream : DStream[NgsiEvent] = ssc.receiverStream(new OrionReceiver(Constants.Port))
 
     // Process event stream
       val processedDataStream = eventStream
