@@ -143,13 +143,13 @@ class OrionConnectorTest extends  BaseTest{
   }
 
   @Test (expected=classOf[java.lang.Exception]) def nettyServerCallbackUrl : Unit = {
-    val os = new OrionHttpServer(NgsiEvent => Unit,"","","","",Utils.Port)
+    val os = new OrionHttpServer(NgsiEvent => Unit,List(""),"","","",Utils.Port)
     Assert.assertEquals(os.startNettyServer(Utils.Port,Some("http://callback")).getPort(),Utils.Port)
     os.close()
   }
 
   @Test def nettyServerNoCallbackUrl : Unit = {
-    val os : OrionHttpServer = new OrionHttpServer(NgsiEvent => Unit,"","","","",Utils.Port)
+    val os : OrionHttpServer = new OrionHttpServer(NgsiEvent => Unit,List(""),"","","",Utils.Port)
     new Thread(new Runnable {
       def run() {
         Thread.sleep(Utils.SleepTime)

@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory
  * Netty HTTP server
  *
  * @param callback  Connector
- * @param entity Entity name
+ * @param entities Entity names
  * @param cbUrl Context broker URL
  * @param description Notification description
  * @param callbackHost Host name
@@ -41,13 +41,13 @@ import org.slf4j.LoggerFactory
  * @param logLevel  netty log level
  */
 class OrionHttpServer(callback: NgsiEvent => Unit,
-  entity: String,
-  cbUrl: String,
-  description: String,
-  callbackHost: String,
-  callbackPort: Int,
-  threadNum: Int = Runtime.getRuntime.availableProcessors(),
-  logLevel: LogLevel = LogLevel.INFO
+    entities: List[String],
+    cbUrl: String,
+    description: String,
+    callbackHost: String,
+    callbackPort: Int,
+    threadNum: Int = Runtime.getRuntime.availableProcessors(),
+    logLevel: LogLevel = LogLevel.INFO
 ) extends ServerTrait {
   private lazy val logger = LoggerFactory.getLogger(getClass)
   private lazy val bossGroup = new NioEventLoopGroup(threadNum)
@@ -90,15 +90,17 @@ class OrionHttpServer(callback: NgsiEvent => Unit,
       isRunning.set(true)
       currentAddr = ch.localAddress().asInstanceOf[InetSocketAddress]
       register(currentAddr, callbackUrl)
-      val assignedPort = currentAddr.getPort()
-      val subscription = new OrionSubscription (entity, cbUrl, description, callbackHost, assignedPort)
-      if (entity.nonEmpty){
-        val subscriptionId = subscription.subscribe()
+      val assignedPort = if (callbackPort == 0) currentAddr.getPort() else callbackPort
+      println(entities.mkString(","))
+      if (entities.length > 0){
+        val subscription = new OrionSubscription (entities, cbUrl, description, callbackHost, assignedPort)
+        subscription.subscribe()
         sys.addShutdownHook(subscription.unsubscribe())
-
+        ch.closeFuture().sync()
+        //subscription.unsubscribe()
+      } else {
+        ch.closeFuture().sync()
       }
-      ch.closeFuture().sync()
-      subscription.unsubscribe()
       currentAddr
     } else {
       currentAddr
