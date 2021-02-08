@@ -16,12 +16,16 @@ only, and this section may be revised to provide newer information at any time.
 The following list of features are planned to be addressed in the short term, and incorporated in the next release of
 the product:
 
--   **ML scenarios**: Developing ML sample scenarios that showcase the capabilities of SparkML when combined with FIWARE GEs.
+-   **Automatic subscription**: Enhance the Spark connector to handle all the subscriptions to entities from the connector itself.
+
+-   **Spark 3.0**: Provide support for Spark 3.0+.
 
 ## Medium term
 
 The following list of features are planned to be addressed in the medium term, typically within the subsequent
 release(s) generated in the next 9 months after next planned release:
+
+-   **Integration in research/learning environments**: Integrate the connector within Apache Zeppelin to analyze and visualize streaming data.
 
 -   **Data usage**: Support the Spark processing engine within the FIWARE data usage control framework.
 
