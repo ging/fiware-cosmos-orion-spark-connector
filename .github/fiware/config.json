@@ -1,0 +1,19 @@
+{
+    "enabler": "FIWARE Cosmos Orion-Spark Connector",
+    "chapter": "core",
+    "academy": "core/cosmos",
+    "readthedocs": "fiware-cosmos-spark.readthedocs.io",
+    "helpdesk": "",
+    "coveralls": "https://coveralls.io/github/ging/fiware-cosmos-orion-spark-connector",
+    "github": ["ging/fiware-cosmos-orion-spark-connector"],
+    "dockerregistry": [],
+    "docker": [],
+    "email": "",
+    "status": "full",
+    "compose": "",
+    "exclude": [""],
+    "stackexchange": [""],
+    "unit-test": "",
+    "smoke-test": "",
+    "dockerfile": ""
+}
